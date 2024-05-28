@@ -1,0 +1,23 @@
+{
+  "name": "lightbeam",
+  "version": "1.0.0",
+  "devDependencies": {
+    "concurrently": "^8.2.2",
+    "parcel": "^2.12.0"
+  },
+  "dependencies": {
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1",
+    "react-router-dom": "^6.23.1"
+  },
+  "scripts": {
+    "dev": "concurrently npm:dev:client npm:dev:server",
+    "dev:client": "cd client && npm run dev",
+    "dev:server": "cd server && npm run dev"
+  },
+  "main": "index.js",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
