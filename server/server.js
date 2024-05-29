@@ -1,15 +1,15 @@
+import 'dotenv/config'; // Automatically loads environment variables from .env
 import express from 'express';
 import mongoose from 'mongoose';
 import passport from 'passport';
 import path from 'path';
 import cors from 'cors';
-import dotenv from 'dotenv';
 import { fileURLToPath } from 'url';
 import usersRoutes from './routes/users.js';
 import mediaRoutes from './routes/media.js';
 import passportConfig from './config/passport.js';
 
-dotenv.config();
+console.log('JWT_SECRET:', process.env.JWT_SECRET); // Debug statement to check environment variable
 
 const app = express();
 const port = process.env.PORT || 3000;
