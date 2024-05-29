@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f2f2f2;
+          }
+          .container {
+            display: flex;
+            width: 100%;
+            height: 100vh;
+          }
+          .sidebar {
+            width: 20%;
+            background-color: #fff;
+            padding: 20px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          }
+          .content {
+            width: 80%;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+          }
+          .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+          }
+          .header h1 {
+            margin: 0;
+          }
+          .h1 {
+              color: #4d4dff;
+              text-shadow: 0 0 5px #83eeff , 0 0 10px #4d4dff ;
+          } 
+          </style>          
+    </head>
+<body>
+<div class="container">
+  <div class="sidebar">
+    <div class="h1"><h1>Lightbeam</h1></div>
+    <div class="nav">
+      <a href="#">Dashboard</a>
+      <a href="#">Calendar</a>
+    </div>
+  </div>
+  <div class="content">
+    <div class="header">
+      <h1>Team Feed</h1>
+      <div class="icon">
+        <i class="fas fa-bell"></i>
+        <i class="fas fa-user"></i>
+      </div>
+    </div>
+    <div class="add">
+      <h3>ADD</h3>
+      <div class="add-options">
+        <button>
+          <i class="fas fa-file-alt"></i> Text
+        </button>
+        <button>
+          <i class="fas fa-image"></i> Image
+        </button>
+        <button>
+          <i class="fas fa-video"></i> Video
+        </button>
+      </div>
+      <button>Create</button>
+    </div>
+</body>
+</html>
