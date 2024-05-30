@@ -1,20 +1,59 @@
 import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import passport from 'passport';
 import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
+import passport from 'passport';
+import jwt from 'jsonwebtoken';
 
 const router = express.Router();
 
-// Create user
+// Register user
 router.post('/register', async (req, res) => {
     try {
-        const user = new User(req.body);
+        const { username, password, role, email, name } = req.body;
+        const user = new User({ username, password, role, email, name });
         await user.save();
         res.status(201).send(user);
     } catch (error) {
         res.status(400).send(error);
     }
+});
+
+// Login user
+router.post('/login', (req, res) => {
+    const { username, password } = req.body;
+    User.findOne({ username }).then(user => {
+        if (!user) {
+            return res.status(404).json({ msg: 'User not found' });
+        }
+
+        // Check password
+        bcrypt.compare(password, user.password).then(isMatch => {
+            if (isMatch) {
+                // User matched, create JWT Payload
+                const payload = {
+                    id: user.id,
+                    username: user.username,
+                    role: user.role
+                };
+
+                // Sign token
+                jwt.sign(
+                    payload,
+                    process.env.JWT_SECRET,
+                    { expiresIn: 3600 }, // 1 hour
+                    (err, token) => {
+                        if (err) throw err;
+                        res.json({
+                            success: true,
+                            token: 'Bearer ' + token
+                        });
+                    }
+                );
+            } else {
+                return res.status(400).json({ msg: 'Password incorrect' });
+            }
+        });
+    });
 });
 
 // Get all users
