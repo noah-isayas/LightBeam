@@ -1,0 +1,105 @@
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lightbeam</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="intro-screen">
+        <h1 class="logo">Lightbeam</h1>
+        <p class="intro-text">Select an option below:</p>
+        <div class="button-container">
+            <button class="btn btn-primary" id="watch-btn">
+                <span class="icon">📺</span>
+                Watch
+            </button>
+            <button class="btn btn-secondary" id="upload-btn">
+                <span class="icon">⬆️</span>
+                Upload
+            </button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+
+<style>
+/* styles.css */
+.intro-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #66BFBF, #FFF);
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    padding: 20px; /* added padding to reduce gap */
+}
+
+.logo {
+    font-size: 48px;
+    font-weight: bold;
+    color: #2196F3;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 10px; /* reduced margin to reduce gap */
+}
+
+.intro-text {
+    font-size: 20px;
+    font-weight: 500;
+    color: #455A64;
+    margin-bottom: 20px; /* reduced margin to reduce gap */
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px; /* added gap between buttons */
+}
+
+.btn {
+    margin: 5px; /* reduced margin to reduce gap */
+    padding: 18px 36px; /* increased padding to make buttons bigger */
+    border: none;
+    border-radius: 5px;
+    font-size: 22px; /* increased font size to make buttons bigger */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.icon {
+    font-size: 24px; /* increased font size for icon */
+    margin-right: 10px; /* added margin to separate icon from text */
+}
+
+.btn-primary {
+    background-color: #2196F3;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0D8CF0;
+}
+
+.btn-secondary {
+    background-color: #FFF;
+    color: #2196F3;
+    border: 2px solid #2196F3;
+}
+
+.btn-secondary:hover {
+    background-color: #E8F5FF;
+}
+
+.btn:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
+</style>
