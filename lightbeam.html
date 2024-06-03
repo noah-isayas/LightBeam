@@ -138,45 +138,12 @@ body {
   align-items: center;
 }
 
-/* Spesifikk rettet mot screen 1, 2 og 3, det er feil her med klassene, de har ingen funksjon så se om og fjern*/
-.feed .pinned .pinned-items .item:nth-child(1) {
-  background-color: #fff;
-}
-.feed .pinned .pinned-items .item:nth-child(2) {
-  background-color: #eee;
-}
-.feed .pinned .pinned-items .item:nth-child(3) {
-  background-color: #ddd;
-}
-.feed .pinned .pinned-items .item:nth-child(4) {
-  background-color: #ccc;
-}
 
 /* thicc skrift */
 .feed .pinned .pinned-items .item .title {
   font-weight: bold;
 }
-/* kanskje waste? beskrivelse for skjerm.*/
-.feed .pinned .pinned-items .item .description {
-  font-size: 0.8em;
-}
-.feed .pinned .pinned-items .item .date {
-  font-size: 0.7em;
-  color: #777;
-}
-.feed .pinned .pinned-items .item .icon {
-  font-size: 1.5em;
-  color: #007bff;
-}
-.feed .pinned .more {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-.feed .pinned .more .icon {
-  font-size: 1.5em;
-  color: #007bff;
-}
+
 /* blokk 2 (recent) */
 .feed .recent {
   padding: 10px;
@@ -199,6 +166,22 @@ body {
 .feed .recent .add-item:hover {
   background-color: #e0e0e0;
 }
+/* Add login button styles */
+.login-button {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    background-color: #000000;
+    color: #fff;
+    cursor: pointer;
+  }
+
+ .login-button:hover {
+    background-color: #0069d9;
+  }
 
 </style>
 
@@ -216,21 +199,21 @@ body {
     <div class="header">
       <h1>Team Feed</h1>
       <div class="icon">
-        <i class="fas fa-bell"></i>
-        <i class="fas fa-user"></i>
       </div>
+      <!-- Add login button -->
+      <button class="login-button">Login</button>
     </div>
     <div class="add">
       <h3>ADD</h3>
       <div class="add-options">
         <button>
-          <i class="fas fa-file-alt"></i> Text
+       Text
         </button>
         <button>
-          <i class="fas fa-image"></i> Image
+         Image
         </button>
         <button>
-          <i class="fas fa-video"></i> Video
+        Video
         </button>
       </div>
       <button>Create</button>
@@ -250,14 +233,11 @@ body {
           </div>
         </div>
         <div class="more">
-          <i class="fas fa-ellipsis-h"></i>
-          <i class="fas fa-arrow-right"></i>
         </div>
       </div>
       <div class="recent">
         <h3>RECENT</h3>
         <div class="add-item">
-          <i class="fas fa-plus"></i>
         </div>
       </div>
     </div>
