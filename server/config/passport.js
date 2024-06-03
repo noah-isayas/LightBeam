@@ -12,6 +12,8 @@ const opts = {};
 opts.jwtFromRequest = ExtractJwt.fromAuthHeaderAsBearerToken();
 opts.secretOrKey = secret;
 
+console.log('JWT_SECRET:', opts.secretOrKey); // This should print your JWT secret
+
 const passportConfig = (passport) => {
     passport.use(new JwtStrategy(opts, (jwt_payload, done) => {
         const user = users.find(user => user.id === jwt_payload.id);

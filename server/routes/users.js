@@ -1,7 +1,8 @@
 import express from 'express';
+import User from '../models/User.js';
 import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
 import passport from 'passport';
+import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
 
 dotenv.config();
@@ -10,26 +11,23 @@ const router = express.Router();
 const users = []; // In-memory storage for users
 const secret = process.env.JWT_SECRET || 'your_secret_key';
 
-// Register
-router.post('/register', (req, res) => {
-    const { username, password } = req.body;
+// Register user
+router.post('/register', async (req, res) => {
+    const { username, password, role, email, name } = req.body;
+
     const existingUser = users.find(user => user.username === username);
     if (existingUser) {
         return res.status(400).json({ msg: 'Username already exists' });
     }
 
-    const newUser = {
-        id: users.length + 1,
-        username,
-        password: bcrypt.hashSync(password, 10),
-        role: 'user' // Default role
-    };
+    const newUser = new User({ username, password: bcrypt.hashSync(password, 10), role, email, name });
+    await newUser.save();
 
     users.push(newUser);
-    res.json(newUser);
+    res.status(201).json(newUser);
 });
 
-// Login
+// Login user
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
     const user = users.find(user => user.username === username);
@@ -47,17 +45,57 @@ router.post('/login', (req, res) => {
     }
 });
 
-// Fetch Current User
+// Fetch current user
 router.get('/current', passport.authenticate('jwt', { session: false }), (req, res) => {
     res.json(req.user);
 });
 
-// Fetch All Users (Admin use)
-router.get('/', passport.authenticate('jwt', { session: false }), (req, res) => {
+// Fetch all users (Admin use)
+router.get('/', passport.authenticate('jwt', { session: false }), async (req, res) => {
     if (req.user.role !== 'admin') {
         return res.status(403).json({ msg: 'Unauthorized' });
     }
+    const users = await User.find();
     res.json(users);
+});
+
+// Get user by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const user = await User.findById(req.params.id);
+        if (!user) {
+            return res.status(404).send();
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
+
+// Update user
+router.patch('/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!user) {
+            return res.status(404).send();
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(400).send(error);
+    }
+});
+
+// Delete user
+router.delete('/:id', async (req, res) => {
+    try {
+        const user = await User.findByIdAndDelete(req.params.id);
+        if (!user) {
+            return res.status(404).send();
+        }
+        res.send(user);
+    } catch (error) {
+        res.status(500).send(error);
+    }
 });
 
 export default router;

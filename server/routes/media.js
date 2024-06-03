@@ -6,70 +6,64 @@ import Media from '../models/Media.js';
 
 const router = express.Router();
 
-const storage = multer.memoryStorage();
-const upload = multer({ storage: storage });
-
-// AWS S3 Configuration
-const s3 = new AWS.S3({
-    accessKeyId: process.env.AWS_ACCESS_KEY,
-    secretAccessKey: process.env.AWS_SECRET_KEY,
-    region: process.env.AWS_REGION
+// Create media
+router.post('/', async (req, res) => {
+    try {
+        const media = new Media(req.body);
+        await media.save();
+        res.status(201).send(media);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
-// Upload Media
-router.post('/upload', passport.authenticate('jwt', { session: false }), upload.single('file'), (req, res) => {
-    const file = req.file;
-    const s3Params = {
-        Bucket: process.env.AWS_BUCKET_NAME,
-        Key: `${Date.now()}_${file.originalname}`,
-        Body: file.buffer,
-        ContentType: file.mimetype
-    };
+// Get all media
+router.get('/', async (req, res) => {
+    try {
+        const media = await Media.find();
+        res.send(media);
+    } catch (error) {
+        res.status(500).send(error);
+    }
+});
 
-    s3.upload(s3Params, (err, data) => {
-        if (err) {
-            return res.status(500).json({ error: err.message });
+// Get media by ID
+router.get('/:id', async (req, res) => {
+    try {
+        const media = await Media.findById(req.params.id);
+        if (!media) {
+            return res.status(404).send();
         }
-
-        const newMedia = new Media({
-            type: req.body.type,
-            content: data.Location,
-            duration: req.body.duration,
-            validUntil: req.body.validUntil,
-            createdBy: req.user.id
-        });
-
-        newMedia.save().then(media => res.json(media)).catch(err => res.status(500).json({ error: err.message }));
-    });
+        res.send(media);
+    } catch (error) {
+        res.status(500).send(error);
+    }
 });
 
-// Get All Media
-router.get('/', (req, res) => {
-    Media.find({ status: 'active' })
-        .populate('createdBy', ['username'])
-        .then(media => res.json(media))
-        .catch(err => res.status(500).json({ error: err.message }));
+// Update media
+router.patch('/:id', async (req, res) => {
+    try {
+        const media = await Media.findByIdAndUpdate(req.params.id, req.body, { new: true, runValidators: true });
+        if (!media) {
+            return res.status(404).send();
+        }
+        res.send(media);
+    } catch (error) {
+        res.status(400).send(error);
+    }
 });
 
-// Fetch a single media item by ID
-router.get('/:id', (req, res) => {
-    Media.findById(req.params.id)
-        .populate('createdBy', ['username'])
-        .then(media => {
-            if (!media) {
-                return res.status(404).json({ msg: 'Media not found' });
-            }
-            res.json(media);
-        })
-        .catch(err => res.status(500).json({ error: err.message }));
-});
-
-// Archive Expired Media
-router.put('/archive', (req, res) => {
-    Media.updateMany(
-        { validUntil: { $lt: new Date() } },
-        { status: 'archived' }
-    ).then(result => res.json(result)).catch(err => res.status(500).json({ error: err.message }));
+// Delete media
+router.delete('/:id', async (req, res) => {
+    try {
+        const media = await Media.findByIdAndDelete(req.params.id);
+        if (!media) {
+            return res.status(404).send();
+        }
+        res.send(media);
+    } catch (error) {
+        res.status(500).send(error);
+    }
 });
 
 export default router;
