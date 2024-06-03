@@ -1,23 +1,21 @@
-<!-- index.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lightbeam</title>
-    <link rel="stylesheet" href="styles.css">
+    <title>KPMG</title>
 </head>
 <body>
     <div class="intro-screen">
-        <h1 class="logo">Lightbeam</h1>
+        <img src="../kpmg.png" alt="KPMG Logo" class="kpmg-logo">
         <p class="intro-text">Select an option below:</p>
         <div class="button-container">
             <button class="btn btn-primary" id="watch-btn">
-                <span class="icon">📺</span>
+                <span>📺</span>
                 Watch
             </button>
             <button class="btn btn-secondary" id="upload-btn">
-                <span class="icon">⬆️</span>
+                <span>⬆️</span>
                 Upload
             </button>
         </div>
@@ -27,8 +25,14 @@
 </body>
 </html>
 
+
 <style>
-/* styles.css */
+.kpmg-logo {
+    width: 250px;
+    height: auto;
+    margin-bottom: 20px; /* added margin to separate logo from text */
+}
+
 .intro-screen {
     display: flex;
     flex-direction: column;
@@ -40,15 +44,6 @@
     box-shadow: 0 0 20px rgba(0, 0, 0, 0.2);
     text-align: center;
     padding: 20px; /* added padding to reduce gap */
-}
-
-.logo {
-    font-size: 48px;
-    font-weight: bold;
-    color: #2196F3;
-    text-transform: uppercase;
-    letter-spacing: 2px;
-    margin-bottom: 10px; /* reduced margin to reduce gap */
 }
 
 .intro-text {
@@ -75,11 +70,6 @@
     transition: background-color 0.2s ease-in-out;
 }
 
-.icon {
-    font-size: 24px; /* increased font size for icon */
-    margin-right: 10px; /* added margin to separate icon from text */
-}
-
 .btn-primary {
     background-color: #2196F3;
     color: #fff;
@@ -102,4 +92,5 @@
 .btn:active {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
+
 </style>
