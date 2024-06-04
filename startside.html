@@ -4,20 +4,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>KPMG</title>
-    <link rel="stylesheet" href="style.css"> <!-- moved styles to external file -->
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
     <div class="Header">
         <a href="Login.html">
             <button class="login-button">Login</button>
         </a>
-        <a href="Signup.html">
-            <button class="signup-button">Sign up</button>
-        </a>
+        
     </div>
     <div class="intro-screen">
         <img src="kpmg.png" alt="KPMG Logo" class="kpmg-logo">
-        <p class="intro-text"> <u>Select an option below</u> </p> <!-- added underline -->
+        <p class="intro-text"> <u>Select an option below</u> </p>
         <div class="button-container">
             <button class="btn btn-primary" id="watch-btn">
                 <span>📺</span>
@@ -112,37 +110,21 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
 }
 
-/* Add login button styles */
 .login-button {
     position: absolute;
     top: 20px;
     right: 20px;
-    padding: 10px 20px;
+    font-size: 17px;
+    padding: 15px 20px;
     border: none;
     border-radius: 5px;
-    background-color: #007bff;
+    background-color: transparent;
     color: #fff;
     cursor: pointer;
   }
 
  .login-button:hover {
-    background-color: #0069d9;
+    background-color: #0D8CF0;
   }
-  .signup-button {
-    position: absolute;
-    top: 20px;
-    right: 120px; 
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    background-color: #007bff;
-    color: #fff;
-    cursor: pointer;
-}
-
- .signup-button:hover {
-    background-color: #0069d9;
-  }
-
 
 </style>
