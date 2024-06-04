@@ -1,68 +1,67 @@
-<style>
-  * {box-sizing: border-box}
-  body {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-  }
-
-  /* Full-width input fields */
-  input[type=text], input[type=password] {
-    width: 100%;
-    padding: 15px;
-    margin: 5px 0 22px 0;
-    display: inline-block;
-    border: none;
-    background: #f1f1f1;
-  }
-
-  input[type=text]:focus, input[type=password]:focus {
-    background-color: #ddd;
-    outline: none;
-  }
-
-  hr {
-    border: 1px solid #f1f1f1;
-    margin-bottom: 25px;
-  }
-
-  .container {
-    background-color: #9dd1d9;
-    padding: 20px;
-    border: 1px solid #ccc;
-    width: 300px; 
-  }
-  .container img {
-    height: 60px;
-    width: 80px;
-    left: 85px;
-    position: relative;
-  }
-</style>
-
 <form action="action_page.php">
-  <div class="container">
-    <img src="kpmg.png" alt="Lightbeam">
-    <p>Please fill in this form to login.</p>
-    <hr>
-
-    <label for="email"><b>Email</b></label>
-    <input type="text" placeholder="Enter Email" name="email" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <label>
-      <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-    </label>
-
-    <p>Forgot <a href="forgot_password.html" style="color:dodgerblue">password?</a></p>
-
-    <div class="clearfix">
-      <button type="button" class="cancelbtn">Cancel</button>
-      <button type="submit" class="loginbtn">Login</button>
+    <div class="container">
+      <img src="kpmg.png" alt="Lightbeam">
+      <p>Please fill in this form to login.</p>
+      <hr>
+  
+      <label for="email"><b>Email</b></label>
+      <input type="text" placeholder="Enter Email" name="email" required>
+  
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+  
+      <label>
+        <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
+      </label>
+  
+      <p>Forgot <a href="forgot_password.html" style="color:dodgerblue">password?</a></p>
+  
+      <div class="clearfix">
+        <button type="button" class="cancelbtn">Cancel</button>
+        <button type="submit" class="loginbtn">Login</button>
+      </div>
     </div>
-  </div>
-</form>
+  </form>
+
+<style>
+    * {box-sizing: border-box}
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+      background-image: linear-gradient(to top right, #002d82, #FFF);
+    }
+  
+    /* Full-width input fields */
+    input[type=text], input[type=password] {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 22px;
+      border: none;
+    }
+  
+    input[type=text]:focus, input[type=password]:focus {
+      background-color: #ddd;
+      outline: none;
+    }
+  
+    hr {
+      border: 1px solid #f1f1f1;
+      margin-bottom: 25px;
+    }
+  
+    .container {
+      background-image:linear-gradient(to bottom right, #b7e8ff , #3a3af3);
+      padding: 20px;
+      border: 1px solid #ccc;
+      width: 300px; 
+    }   
+    .container img {
+      height: 60px;
+      width: 80px;
+      left: 85px;
+      position: relative;
+    }
+  </style>
