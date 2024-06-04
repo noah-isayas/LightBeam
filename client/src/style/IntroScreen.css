@@ -1,0 +1,75 @@
+body {
+    margin: 0;
+}
+
+.kpmg-logo {
+    width: 250px;
+    height: auto;
+}
+
+.intro-screen {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    background-image: linear-gradient(to bottom right, #002d82, #FFF);
+}
+
+.intro-text {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 14px;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #fff;
+    letter-spacing: 1px;
+}
+
+.intro-text u {
+    text-decoration: underline;
+    text-underline-offset: 0.5em;
+    text-decoration-thickness: 0.2em;
+    text-decoration-color: #fff;
+}
+
+.button-container {
+    display: flex;
+    justify-content: center;
+}
+
+.btn {
+    margin: 5px;
+    padding: 18px 36px;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.2s ease-in-out;
+}
+
+.btn-primary {
+    font-size: 30px;
+    background-color: #002d82;
+    color: #fff;
+}
+
+.btn-primary:hover {
+    background-color: #0D8CF0;
+    transition: 1s;
+}
+
+.btn-secondary {
+    font-size: 30px;
+    background-color: #fff;
+    color: #002d82;
+    border: 2px solid #0d8fc0;
+}
+
+.btn-secondary:hover {
+    background-color: #55ceff;
+    transition: 2s;
+}
+
+.btn:active {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.4);
+}
