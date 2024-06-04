@@ -4,7 +4,7 @@ import passport from 'passport';
 import dotenv from 'dotenv';
 import path from 'path';
 import cors from 'cors';
-import mongoose from 'mongoose'; // Added mongoose import for MongoDB connection
+import mongoose from 'mongoose';
 import { fileURLToPath } from 'url';
 import usersRoutes from './routes/users.js';
 import mediaRoutes from './routes/media.js';
@@ -41,6 +41,9 @@ app.use('/api/users', usersRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/upload', uploadRoutes); // Use the upload route
 
+// Serve static files from the 'client/dist' directory
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
 // Serve the upload HTML page
 app.get('/upload', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/upload.html'));
@@ -66,3 +69,4 @@ if (process.env.NODE_ENV === 'production') {
 app.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
