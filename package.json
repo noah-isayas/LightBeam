@@ -6,6 +6,7 @@
     "parcel": "^2.12.0"
   },
   "dependencies": {
+    "axios": "^1.7.2",
     "bcryptjs": "^2.4.3",
     "cors": "^2.8.5",
     "dotenv": "^16.4.5",
@@ -21,7 +22,8 @@
   "scripts": {
     "dev": "concurrently npm:dev:client npm:dev:server",
     "dev:client": "cd client && npm run dev",
-    "dev:server": "cd server && npm run dev"
+    "dev:server": "cd server && npm run dev",
+    "build-widget": "cd client && parcel build weatherWidgetEntry.js --dist-dir dist --public-url ./"
   },
   "main": "index.js",
   "keywords": [],

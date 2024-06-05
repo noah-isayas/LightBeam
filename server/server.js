@@ -13,6 +13,7 @@ dotenv.config();
 import passportConfig from './config/passport.js';
 import userRoutes from './routes/users.js';
 import mediaRoutes from './routes/media.js';
+import uploadRoutes from './routes/upload.js';
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -53,6 +54,7 @@ passportConfig(passport);
 
 app.use('/api/users', userRoutes);
 app.use('/api/media', mediaRoutes);
+app.use('/api/upload', uploadRoutes);
 
 // Serve static files from the 'client/dist' directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
