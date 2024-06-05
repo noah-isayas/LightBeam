@@ -9,7 +9,7 @@ const WeatherWidget = () => {
     useEffect(() => {
         const fetchWeather = async () => {
             try {
-                const apiKey = '3af78ef639d04b8c3ea82baa85ff0554';
+                const apiKey = process.env.REACT_APP_WEATHER_API_KEY;;
                 const response = await axios.get(`https://api.openweathermap.org/data/2.5/weather?q=Oslo&units=metric&appid=${apiKey}`);
                 setWeather(response.data);
             } catch (error) {
