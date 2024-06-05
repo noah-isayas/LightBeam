@@ -54,11 +54,26 @@ passportConfig(passport);
 app.use('/api/users', userRoutes);
 app.use('/api/media', mediaRoutes);
 
+// Serve static files from the 'client/dist' directory
+app.use(express.static(path.join(__dirname, '../client/dist')));
+
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
+});
+
+// Serve the upload HTML page
+app.get('/upload', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/upload.html'));
+});
+
+// Serve uploaded files
+app.use('/uploads', express.static('uploads'));
+
 if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, 'client/build')));
+    app.use(express.static(path.join(__dirname, '../client/dist')));
 
     app.get('*', (req, res) => {
-        res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'));
+        res.sendFile(path.resolve(__dirname, '../client/dist', 'index.html'));
     });
 }
 
@@ -77,3 +92,4 @@ io.on('connection', (socket) => {
 server.listen(port, () => {
     console.log(`Server running on port ${port}`);
 });
+
