@@ -1,0 +1,36 @@
+/* Feed.css */
+.feed {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.pinned {
+    margin-bottom: 20px;
+}
+
+.pinned-items {
+    display: flex;
+    gap: 10px;
+}
+
+.item {
+    cursor: pointer;
+}
+
+.item img {
+    width: 150px;
+    height: 100px;
+}
+
+.item .title {
+    text-align: center;
+}
+
+.recent {
+    margin-top: 20px;
+}
+
+.add-item {
+    /* styles for add item section */
+}
