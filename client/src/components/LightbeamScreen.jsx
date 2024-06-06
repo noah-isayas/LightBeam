@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import axios from 'axios';
 import '../style/LightbeamScreen.css';
 
 const LightbeamScreen = () => {
@@ -8,17 +9,25 @@ const LightbeamScreen = () => {
         screen3: null,
     });
 
-    const handleImageChange = (event, screen) => {
+    const handleImageChange = async (event, screen) => {
         const file = event.target.files[0];
         if (file) {
-            const reader = new FileReader();
-            reader.onload = () => {
+            const formData = new FormData();
+            formData.append('image', file);
+
+            try {
+                const response = await axios.post('http://localhost:3000/api/upload/upload', formData, {
+                    headers: {
+                        'Content-Type': 'multipart/form-data',
+                    },
+                });
                 setImages((prevImages) => ({
                     ...prevImages,
-                    [screen]: reader.result,
+                    [screen]: response.data.content, // Assuming response.data.content contains the file path
                 }));
-            };
-            reader.readAsDataURL(file);
+            } catch (error) {
+                console.error('Error uploading the image:', error);
+            }
         }
     };
 
@@ -46,16 +55,22 @@ const LightbeamScreen = () => {
                         <div className="pinned-items">
                             {['screen1', 'screen2', 'screen3'].map((screen) => (
                                 <div key={screen} className="item">
-                                    <input
-                                        type="file"
-                                        accept="image/*"
-                                        onChange={(e) => handleImageChange(e, screen)}
-                                        className="file-input"
-                                    />
-                                    {images[screen] ? (
-                                        <img src={images[screen]} alt={screen} />
+                                    {screen === 'screen3' ? (
+                                        <>
+                                            <input
+                                                type="file"
+                                                accept="image/*"
+                                                onChange={(e) => handleImageChange(e, screen)}
+                                                className="file-input"
+                                            />
+                                            {images[screen] ? (
+                                                <img src={`http://localhost:3000/${images[screen]}`} alt={screen} />
+                                            ) : (
+                                                <p className="title">{screen.replace('screen', 'Screen ')}</p>
+                                            )}
+                                        </>
                                     ) : (
-                                        <p className="title">{screen.replace('screen', 'Screen ')}</p>
+                                        <p className="title">Template for {screen.replace('screen', 'Screen ')}</p>
                                     )}
                                 </div>
                             ))}
@@ -77,3 +92,12 @@ const LightbeamScreen = () => {
 };
 
 export default LightbeamScreen;
+
+
+
+
+
+
+
+
+
