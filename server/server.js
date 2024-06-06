@@ -38,11 +38,6 @@ const io = new Server(server, {
         credentials: true
     }
 });
-/*
-const server = app.listen(process.env.PORT || 3000, () => {
-    console.log(`Started on http://localhost:${server.address().port}`);
-});
-* */
 
 
 const __filename = fileURLToPath(import.meta.url);
@@ -101,6 +96,3 @@ server.listen(port, () => {
     console.log(`Server running on port ${port}`);
     console.log(`Server started on http://localhost:${server.address().port}`);
 });
-
-
-
