@@ -6,7 +6,7 @@
 
     <div class="google-container">
       <button type="button" class="googlebtn" onclick="googleLogin()">
-        <img src="google-logo.png" alt="Google Logo" class="google-logo">
+        <img src="Google_Icons-09-512.webp" alt="Google Logo" class="google-logo">
         Continue with Google
       </button>
     </div>
@@ -16,21 +16,20 @@
       <input type="email" placeholder="Enter Email" name="email" required>
     </div>
 
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
+    <div class="password-container">
+      <label for="psw"><b>Password</b></label>
+      <input type="password" placeholder="Enter Password" name="psw" required>
+    </div>
 
     <label>
       <input type="checkbox" checked="checked" name="remember"> Remember me
     </label>
 
-    <p>Forgot <a href="forgot_password.html" style="color: #fff">Forget password?</a></p>
-    <p><a href="Signup.html" style="color: #fff">Signup</a></p>
-
     <div class="clearfix">
       <a href="startside.html">
         <button type="button" class="cancelbtn">Back</button>
       </a>
-      <button type="submit" class="loginbtn">Login</button>
+      <button type="submit" class="loginbtn" style="margin-left: 10px;">Login</button>
     </div>
   </div>
 </form>
@@ -60,6 +59,7 @@ input[type="email"], input[type="password"] {
 input[type="email"]:focus, input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
+  width: 100%;
 }
 
 hr {
@@ -82,29 +82,69 @@ hr {
 
 .google-container {
   display: inline-block;
-  margin-right: 20px;
+  margin-left: 10px;
+  margin-top: 10px;
 }
 
 .googlebtn {
-  background-color: #fff;
-  color: #357ae8;
+  background-color: #ffffff;
+  color: #000000;
   padding: 10px 20px;
   border: none;
   border-radius: 5px;
   cursor: pointer;
+  font-size: medium;
+  position: relative;
+  bottom: 20px;
 }
 
 .googlebtn:hover {
-  background-color: #66ffff;
+  background-color:#9a9696;
+  color: #66ffff;
 }
 
 .google-logo {
-  height: 20px;
-  width: 20px;
+  height: 18px;
+  width: 18px;
   margin-right: 10px;
 }
 
-.email-container {
-  display: inline-block;
+.email-container,.password-container {
+  display: block;
+  margin-bottom: 0px; 
+}
+
+.clearfix {
+  overflow: auto;
+}
+
+.cancelbtn, .loginbtn {
+  float: left;
+  width: 50%;
+  padding: 10px;
+  border: none;
+  border-radius: 100px;
+  cursor: pointer;
+  margin: 10px; 
+}
+
+.cancelbtn {
+  background-color: #ccc;
+  color: #000000;
+}
+
+.cancelbtn:hover {
+  background-color: #9a9696;
+  color: #66ffff;
+}
+
+.loginbtn {
+  background-color: #4CAF50;
+  color: #ffffff;
+}
+
+.loginbtn:hover {
+  background-color: #3e8e41;
+  color: #ffffff;
 }
 </style>
