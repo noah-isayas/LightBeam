@@ -1,7 +1,27 @@
-import React from 'react';
+import React, { useState } from 'react';
 import '../style/LightbeamScreen.css';
 
 const LightbeamScreen = () => {
+    const [images, setImages] = useState({
+        screen1: null,
+        screen2: null,
+        screen3: null,
+    });
+
+    const handleImageChange = (event, screen) => {
+        const file = event.target.files[0];
+        if (file) {
+            const reader = new FileReader();
+            reader.onload = () => {
+                setImages((prevImages) => ({
+                    ...prevImages,
+                    [screen]: reader.result,
+                }));
+            };
+            reader.readAsDataURL(file);
+        }
+    };
+
     return (
         <div className="lightbeam-screen">
             <div className="content">
@@ -24,15 +44,21 @@ const LightbeamScreen = () => {
                     <div className="pinned">
                         <h3>PINNED / IMPORTANT</h3>
                         <div className="pinned-items">
-                            <div className="item">
-                                <img src="Screen1.png" alt="Screen 1" width="150" height="100" />
-                            </div>
-                            <div className="item">
-                                <p className="title">Screen 2</p>
-                            </div>
-                            <div className="item">
-                                <p className="title">SCREEN 3</p>
-                            </div>
+                            {['screen1', 'screen2', 'screen3'].map((screen) => (
+                                <div key={screen} className="item">
+                                    <input
+                                        type="file"
+                                        accept="image/*"
+                                        onChange={(e) => handleImageChange(e, screen)}
+                                        className="file-input"
+                                    />
+                                    {images[screen] ? (
+                                        <img src={images[screen]} alt={screen} />
+                                    ) : (
+                                        <p className="title">{screen.replace('screen', 'Screen ')}</p>
+                                    )}
+                                </div>
+                            ))}
                         </div>
                         <div className="more">
                             {/* More content */}
