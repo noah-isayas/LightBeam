@@ -1,35 +1,45 @@
-<form action="action_page.php"></form>
-<div class="container">
-  <img src="kpmg.png" alt="Lightbeam">
-  <p>Please fill in this form to login.</p>
-  <hr>
+<form action="action_page.php">
+  <div class="container">
+    <img src="kpmg.png" alt="Lightbeam" class="logo">
+    <p>Please fill in this form to login.</p>
+    <hr>
 
-  <label for="email"><b>Email</b></label>
-  <input type="text" placeholder="Enter Email" name="email" required>
+    <div class="google-container">
+      <button type="button" class="googlebtn" onclick="googleLogin()">
+        <img src="google-logo.png" alt="Google Logo" class="google-logo">
+        Continue with Google
+      </button>
+    </div>
 
-  <label for="psw"><b>Password</b></label>
-  <input type="password" placeholder="Enter Password" name="psw" required>
+    <div class="email-container">
+      <label for="email"><b>Email</b></label>
+      <input type="email" placeholder="Enter Email" name="email" required>
+    </div>
 
-  <label>
-    <input type="checkbox" checked="checked" name="remember" style="margin-bottom:15px"> Remember me
-  </label>
+    <label for="psw"><b>Password</b></label>
+    <input type="password" placeholder="Enter Password" name="psw" required>
 
-  <p>Forgot <a href="forgot_password.html" style="color:rgb(255, 255, 255)">password?</a></p>
-  <p> <a href="Signup.html" style="color:rgb(255, 255, 255)">Signup</a></p>
+    <label>
+      <input type="checkbox" checked="checked" name="remember"> Remember me
+    </label>
 
-  <div class="clearfix">
-    <a href="startside.html">
-    <button type="button" class="cancelbtn">Back</button>
-  </a>
-    <button type="submit" class="loginbtn">Login</button>
+    <p>Forgot <a href="forgot_password.html" style="color: #fff">Forget password?</a></p>
+    <p><a href="Signup.html" style="color: #fff">Signup</a></p>
+
+    <div class="clearfix">
+      <a href="startside.html">
+        <button type="button" class="cancelbtn">Back</button>
+      </a>
+      <button type="submit" class="loginbtn">Login</button>
+    </div>
   </div>
-</div>
-</div>
-</form>
 </form>
 
 <style>
-* {box-sizing: border-box}
+* {
+  box-sizing: border-box;
+}
+
 body {
   display: flex;
   justify-content: center;
@@ -40,14 +50,14 @@ body {
 }
 
 /* Full-width input fields */
-input[type=text], input[type=password] {
+input[type="email"], input[type="password"] {
   width: 100%;
   padding: 10px;
   margin: 8px 0 22px;
   border: none;
 }
 
-input[type=text]:focus, input[type=password]:focus {
+input[type="email"]:focus, input[type="password"]:focus {
   background-color: #ddd;
   outline: none;
 }
@@ -58,15 +68,43 @@ hr {
 }
 
 .container {
-  background-image:linear-gradient(to bottom right, #b7e8ff , #3a3af3);
+  background-image: linear-gradient(to bottom right, #b7e8ff, #3a3af3);
   padding: 20px;
   border: 1px solid #ccc;
-  width: 300px; 
-}   
-.container img {
+  width: 300px;
+}
+
+.container .logo {
   height: 60px;
   width: 80px;
-  left: 85px;
-  position: relative;
+  margin: 0 auto;
+}
+
+.google-container {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.googlebtn {
+  background-color: #fff;
+  color: #357ae8;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.googlebtn:hover {
+  background-color: #66ffff;
+}
+
+.google-logo {
+  height: 20px;
+  width: 20px;
+  margin-right: 10px;
+}
+
+.email-container {
+  display: inline-block;
 }
 </style>
