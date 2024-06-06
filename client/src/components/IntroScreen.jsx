@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import '../style/IntroScreen.css';
 
 const IntroScreen = () => {
@@ -13,12 +14,12 @@ const IntroScreen = () => {
                     <span role="img" aria-label="watch">📺</span>
                     Watch
                 </button>
-                <a href="lightbeam.html">
+                <Link to="/lightbeam">
                     <button className="btn btn-secondary" id="upload-btn">
                         <span role="img" aria-label="upload">⬆️</span>
                         Upload
                     </button>
-                </a>
+                </Link>
             </div>
         </div>
     );
