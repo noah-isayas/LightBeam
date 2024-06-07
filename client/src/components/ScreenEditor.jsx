@@ -1,4 +1,5 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import '../style/ScreenEditor.css';
 
 function EditableText({ text, onTextChange }) {
@@ -56,22 +57,62 @@ function KPMGDashboard() {
         { title: 'Kine Kjaernet tas opp som partner i KPMG', date: '22.4.2020 09:10:36 CEST | Pressemelding', src: 'kine.jpg' }
     ]);
 
+    useEffect(() => {
+        // Fetch saved template data on mount
+        const fetchTemplateData = async () => {
+            try {
+                const response = await axios.get('http://localhost:3000/api/template/get');
+                const data = response.data;
+                if (data) {
+                    setEmployees(data.employees || employees);
+                    setDateTime(data.dateTime || dateTime);
+                    setTemperature(data.temperature || temperature);
+                    setEvents(data.events || events);
+                    setPressItems(data.pressItems || pressItems);
+                }
+            } catch (error) {
+                console.error("Error fetching template data:", error);
+            }
+        };
+
+        fetchTemplateData();
+    }, []);
+
+    const saveTemplateData = async () => {
+        const data = {
+            employees,
+            dateTime,
+            temperature,
+            events,
+            pressItems
+        };
+
+        try {
+            await axios.post('http://localhost:3000/api/template/save', { data });
+        } catch (error) {
+            console.error("Error saving template data:", error);
+        }
+    };
+
     const handleEmployeeChange = (index, key, value) => {
         const newEmployees = [...employees];
         newEmployees[index][key] = value;
         setEmployees(newEmployees);
+        saveTemplateData(); // Save data whenever there is a change
     };
 
     const handleEventChange = (index, key, value) => {
         const newEvents = [...events];
         newEvents[index][key] = value;
         setEvents(newEvents);
+        saveTemplateData(); // Save data whenever there is a change
     };
 
     const handlePressItemChange = (index, key, value) => {
         const newPressItems = [...pressItems];
         newPressItems[index][key] = value;
         setPressItems(newPressItems);
+        saveTemplateData(); // Save data whenever there is a change
     };
 
     return (
@@ -123,3 +164,4 @@ function KPMGDashboard() {
 }
 
 export default KPMGDashboard;
+

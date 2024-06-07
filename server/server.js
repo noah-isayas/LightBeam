@@ -7,6 +7,7 @@ import { fileURLToPath } from 'url';
 import http from 'http';
 import { Server } from 'socket.io';
 import dotenv from 'dotenv';
+import templateRoutes from './routes/template.js';
 
 dotenv.config();
 
@@ -26,7 +27,8 @@ app.use(cors({
     credentials: true
 }));
 
-app.use(express.json());
+app.use(express.json({ limit: '50mb' }));
+app.use(express.urlencoded({ limit: '50mb', extended: true }));
 
 // Create HTTP server and setup Socket.IO with CORS
 const server = http.createServer(app);
@@ -55,6 +57,7 @@ passportConfig(passport);
 app.use('/api/users', userRoutes);
 app.use('/api/media', mediaRoutes);
 app.use('/api/upload', uploadRoutes);
+app.use('/api/template', templateRoutes);
 
 // Serve static files from the 'client/dist' directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
