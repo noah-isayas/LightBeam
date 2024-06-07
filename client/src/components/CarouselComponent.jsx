@@ -12,7 +12,7 @@ function CarouselComponent() {
                     <WatchScreen/>
                 </div>
                 <div>
-                    <WatchScreen/>
+                    <WatchScreen2/>
                 </div>
                 <div>
                     <ImageTemplate imageUrl={"kpmg.png"}/>
