@@ -47,7 +47,7 @@ body {
     background-image: url('weather-background.jpg'); /* Add your background image here */
     background-size: cover; /* Cover the whole box */
     background-position: center; /* Center the background image */
-    color: white; /* Text color for better readability against the background image */
+    color: black; /* Text color for better readability against the background image */
     padding: 40px 20px;
 }
 
