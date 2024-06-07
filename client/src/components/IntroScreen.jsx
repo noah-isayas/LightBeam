@@ -5,7 +5,7 @@ import '../style/IntroScreen.css';
 const IntroScreen = () => {
     return (
         <div className="intro-screen">
-            <img src="kpmg.png" alt="KPMG Logo" className="kpmg-logo" />
+            <img src="kpmg.png" alt="KPMG Log5o" className="kpmg-logo" />
             <p className="intro-text">
                 <u>Select an option below</u>
             </p>

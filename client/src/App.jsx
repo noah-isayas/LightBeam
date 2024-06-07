@@ -7,6 +7,7 @@ import Dashboard from './components/Dashboard';
 import Calendar from './components/Calendar';
 import Login from './components/Login';
 import LightbeamScreen from './components/LightbeamScreen';
+import ScreenEditor from "./components/ScreenEditor";
 
 const App = () => {
     return (
@@ -19,6 +20,7 @@ const App = () => {
                     <Route path="/calendar" element={<Calendar />} />
                     <Route path="/login" element={<Login />} />
                     <Route path="/lightbeam" element={<LightbeamScreen />} />
+                    <Route path="/screen-editor" element={<ScreenEditor />} />
                 </Routes>
             </div>
         </Router>
