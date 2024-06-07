@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/LightbeamScreen.css';
 
@@ -9,11 +9,32 @@ const LightbeamScreen = () => {
         screen3: null,
     });
 
+    const fetchImages = async () => {
+        try {
+            const response = await axios.get('http://localhost:3000/api/media');
+            console.log("Fetched media:", response.data);
+            const media = response.data;
+            const screenImages = {
+                screen1: media.find(item => item.type === 'screen1')?.content || null,
+                screen2: media.find(item => item.type === 'screen2')?.content || null,
+                screen3: media.find(item => item.type === 'screen3')?.content || null,
+            };
+            setImages(screenImages);
+        } catch (error) {
+            console.error("There was an error fetching the images!", error);
+        }
+    };
+
+    useEffect(() => {
+        fetchImages();
+    }, []);
+
     const handleImageChange = async (event, screen) => {
         const file = event.target.files[0];
         if (file) {
             const formData = new FormData();
             formData.append('image', file);
+            formData.append('screen', screen);
 
             try {
                 const response = await axios.post('http://localhost:3000/api/upload/upload', formData, {
@@ -21,10 +42,8 @@ const LightbeamScreen = () => {
                         'Content-Type': 'multipart/form-data',
                     },
                 });
-                setImages((prevImages) => ({
-                    ...prevImages,
-                    [screen]: response.data.content, // Assuming response.data.content contains the file path
-                }));
+                console.log("Uploaded media:", response.data);
+                fetchImages();
             } catch (error) {
                 console.error('Error uploading the image:', error);
             }
@@ -92,6 +111,13 @@ const LightbeamScreen = () => {
 };
 
 export default LightbeamScreen;
+
+
+
+
+
+
+
 
 
 

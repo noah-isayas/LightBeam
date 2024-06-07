@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import path from 'path';
+import fs from 'fs';
 import Media from '../models/Media.js';
 
 const router = express.Router();
@@ -37,18 +38,36 @@ function checkFileType(file, cb) {
 
 // Upload route
 router.post('/upload', (req, res) => {
+    console.log("Upload request received");
     upload(req, res, async (err) => {
         if (err) {
+            console.error("Upload error:", err);
             res.status(400).send(err);
         } else {
             if (req.file == undefined) {
+                console.log("No file selected");
                 res.status(400).send('No file selected');
             } else {
+                const { screen } = req.body; // Get screen type from request body
+
+                // Delete the previous image from the filesystem and database
+                const previousMedia = await Media.findOne({ type: screen });
+                if (previousMedia) {
+                    fs.unlink(previousMedia.content, (err) => {
+                        if (err) {
+                            console.error("Error deleting the previous image:", err);
+                        } else {
+                            console.log("Previous image deleted:", previousMedia.content);
+                        }
+                    });
+                    await Media.deleteOne({ _id: previousMedia._id });
+                }
+
                 const newMedia = new Media({
-                    type: 'image',
+                    type: screen || 'image',
                     content: req.file.path,
-                    duration: 15, // Duration for each image in seconds
-                    validuntil: new Date(), // or set an appropriate expiry date
+                    duration: 15,
+                    validuntil: new Date(),
                     createdby: null, // Set the user who uploaded the file
                     status: 'active'
                 });
@@ -59,7 +78,7 @@ router.post('/upload', (req, res) => {
     });
 });
 
-
-
-
 export default router;
+
+
+

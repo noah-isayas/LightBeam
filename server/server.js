@@ -59,17 +59,13 @@ app.use('/api/upload', uploadRoutes);
 // Serve static files from the 'client/dist' directory
 app.use(express.static(path.join(__dirname, '../client/dist')));
 
-app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../client/dist/index.html'));
-});
-
 // Serve the upload HTML page
 app.get('/upload', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/upload.html'));
 });
 
 // Serve uploaded files
-app.use('/uploads', express.static('uploads'));
+app.use('/uploads', express.static(path.join(__dirname, 'uploads')));
 
 if (process.env.NODE_ENV === 'production') {
     app.use(express.static(path.join(__dirname, '../client/dist')));

@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 const Schema = mongoose.Schema;
 
 const mediaSchema = new Schema({
-    type: { type: String, required: true, enum: ['text', 'image'] },
+    type: { type: String, required: true, enum: ['text', 'image', 'screen1', 'screen2', 'screen3'] },
     content: { type: String, required: true },
     duration: { type: Number, required: true }, // in seconds
     validuntil: { type: Date, required: true }, // ISO date string
@@ -15,4 +15,5 @@ const mediaSchema = new Schema({
 
 const Media = mongoose.model('Media', mediaSchema);
 export default Media;
+
 
