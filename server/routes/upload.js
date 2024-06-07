@@ -47,16 +47,19 @@ router.post('/upload', (req, res) => {
                 const newMedia = new Media({
                     type: 'image',
                     content: req.file.path,
-                    duration: 0,
-                    validuntil: new Date(),
+                    duration: 15, // Duration for each image in seconds
+                    validuntil: new Date(), // or set an appropriate expiry date
                     createdby: null, // Set the user who uploaded the file
                     status: 'active'
                 });
                 await newMedia.save();
-                res.send(`<h2>File uploaded successfully</h2><img src="/${req.file.path}" alt="Uploaded Image"/>`);
+                res.json(newMedia); // Respond with the saved media document
             }
         }
     });
 });
+
+
+
 
 export default router;

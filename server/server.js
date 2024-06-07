@@ -20,7 +20,7 @@ const port = process.env.PORT || 3000;
 
 // CORS configuration for Express
 app.use(cors({
-    origin: "http://localhost:1234", // Ensure this matches your client URL and port
+    origin: ["http://localhost:1234", "http://localhost:5173"], // Include both origins
     methods: ["GET", "POST"],
     allowedHeaders: ["Authorization", "Content-Type"],
     credentials: true
@@ -32,13 +32,12 @@ app.use(express.json());
 const server = http.createServer(app);
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:1234", // Ensure this matches your client URL and port
+        origin: ["http://localhost:1234", "http://localhost:5173"], // Include both origins
         methods: ["GET", "POST"],
         allowedHeaders: ["Authorization", "Content-Type"],
         credentials: true
     }
 });
-
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -96,3 +95,6 @@ server.listen(port, () => {
     console.log(`Server running on port ${port}`);
     console.log(`Server started on http://localhost:${server.address().port}`);
 });
+
+
+
