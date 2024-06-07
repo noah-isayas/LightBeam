@@ -8,6 +8,8 @@ import Calendar from './components/Calendar';
 import Login from './components/Login';
 import LightbeamScreen from './components/LightbeamScreen';
 import ScreenEditor from "./components/ScreenEditor";
+import WatchScreen from "./components/WatchScreen.jsx";
+import CarouselComponent from "./components/CarouselComponent.jsx";
 
 const App = () => {
     return (
@@ -21,6 +23,7 @@ const App = () => {
                     <Route path="/login" element={<Login />} />
                     <Route path="/lightbeam" element={<LightbeamScreen />} />
                     <Route path="/screen-editor" element={<ScreenEditor />} />
+                    <Route path="/watch-screen" element={<CarouselComponent />} />
                 </Routes>
             </div>
         </Router>

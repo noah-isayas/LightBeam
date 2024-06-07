@@ -10,10 +10,12 @@ const IntroScreen = () => {
                 <u>Select an option below</u>
             </p>
             <div className="button-container">
-                <button className="btn btn-primary" id="watch-btn">
-                    <span role="img" aria-label="watch">📺</span>
-                    Watch
-                </button>
+                <Link to="/watch-screen">
+                    <button className="btn btn-primary" id="watch-btn">
+                        <span role="img" aria-label="watch">📺</span>
+                        Watch
+                    </button>
+                </Link>
                 <Link to="/lightbeam">
                     <button className="btn btn-secondary" id="upload-btn">
                         <span role="img" aria-label="upload">⬆️</span>
