@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import '../style/LightbeamScreen.css';
+import {Link} from "react-router-dom";
 
 const LightbeamScreen = () => {
     const [images, setImages] = useState({
@@ -89,7 +90,7 @@ const LightbeamScreen = () => {
                                             )}
                                         </>
                                     ) : (
-                                        <p className="title">Template for {screen.replace('screen', 'Screen ')}</p>
+                                        <Link to={"/screen-editor"}><p className="title">Template for {screen.replace('screen', 'Screen ')}</p></Link>
                                     )}
                                 </div>
                             ))}
